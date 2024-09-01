@@ -1,11 +1,36 @@
-<h1>Welcome to the Blog</h1>
-{{#if posts.length}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+  <header>
+    <h1>{{siteName}}</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      {{#if loggedIn}}
+        <a href="/logout">Logout</a>
+      {{else}}
+        <a href="/login">Login</a>
+        <a href="/signup">Sign Up</a>
+      {{/if}}
+    </nav>
+  </header>
+  <div class="container">
     {{#each posts}}
-        <div>
-            <h2><a href="/post/{{this.id}}">{{this.title}}</a></h2>
-            <p>Posted by {{this.user.username}} on {{this.createdAt}}</p>
-        </div>
+      <div class="post">
+        <h2 class="post-title">{{this.title}}</h2>
+        <p class="post-meta">Posted by {{this.username}} on {{this.dateCreated}}</p>
+        <p class="post-content">{{this.content}}</p>
+      </div>
     {{/each}}
-{{else}}
-    <p>No posts yet!</p>
-{{/if}}
+  </div>
+  <footer>
+    <p>&copy; 2024 Tech Blog</p>
+  </footer>
+</body>
+</html>
