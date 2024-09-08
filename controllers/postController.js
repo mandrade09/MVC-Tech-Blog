@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, User } = require('../models');
+const { Post } = require('../models');
 const withAuth = require('../utils/auth');
 
 // GET all posts for the logged-in user
@@ -35,18 +35,12 @@ router.get('/edit/:id', withAuth, async (req, res) => {
                 logged_in: true
             });
         } else {
-            res.status(404).end();
+            res.status(404).json({ message: 'No post found with this id!' });
         }
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
-// Render the create post page
-router.get('/new', withAuth, (req, res) => {
-    res.render('new-post', {
-        logged_in: true
-    });
-});
-
 module.exports = router;
+

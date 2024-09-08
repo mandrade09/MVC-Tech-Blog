@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <link rel="stylesheet" href="/styles/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
 </head>
 <body>
   <header>
-    <h1>{{siteName}}</h1>
+    <h1>Dashboard</h1>
     <nav>
       <a href="/">Home</a>
       <a href="/dashboard">Dashboard</a>
@@ -29,9 +27,9 @@
       <div class="post">
         <h2 class="post-title">{{this.title}}</h2>
         <p class="post-meta">Posted on {{this.dateCreated}}</p>
-        <a href="/posts/{{this.id}}">View Post</a>
-        <a href="/posts/{{this.id}}/edit"><button>Edit</button></a>
-        <form action="/posts/{{this.id}}/delete" method="POST" style="display:inline;">
+        <a href="/post/{{this.id}}">View Post</a>
+        <a href="/post/{{this.id}}/edit"><button>Edit</button></a>
+        <form action="/post/{{this.id}}/delete" method="POST" style="display:inline;">
           <button type="submit">Delete</button>
         </form>
       </div>

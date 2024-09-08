@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, Comment } = require('../../models');
+const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // Create a new post
@@ -19,19 +19,19 @@ router.post('/', withAuth, async (req, res) => {
 // Update an existing post
 router.put('/:id', withAuth, async (req, res) => {
     try {
-        const updatedPost = await Post.update(req.body, {
+        const [affectedRows] = await Post.update(req.body, {
             where: {
                 id: req.params.id,
                 user_id: req.session.user_id
             }
         });
 
-        if (!updatedPost) {
+        if (!affectedRows) {
             res.status(404).json({ message: 'No post found with this id!' });
             return;
         }
 
-        res.json(updatedPost);
+        res.json({ message: 'Post updated successfully!' });
     } catch (err) {
         res.status(500).json(err);
     }
@@ -40,22 +40,23 @@ router.put('/:id', withAuth, async (req, res) => {
 // Delete a post
 router.delete('/:id', withAuth, async (req, res) => {
     try {
-        const postData = await Post.destroy({
+        const affectedRows = await Post.destroy({
             where: {
                 id: req.params.id,
                 user_id: req.session.user_id
             }
         });
 
-        if (!postData) {
+        if (!affectedRows) {
             res.status(404).json({ message: 'No post found with this id!' });
             return;
         }
 
-        res.json(postData);
+        res.json({ message: 'Post deleted successfully!' });
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
 module.exports = router;
+
