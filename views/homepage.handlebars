@@ -25,7 +25,7 @@
     {{#each posts}}
       <div class="post">
         <h2 class="post-title">{{this.title}}</h2>
-        <p class="post-meta">Posted by {{this.username}} on {{this.dateCreated}}</p>
+        <p class="post-meta">Posted by {{this.user.username}} on {{this.createdAt}}</p>
         <p class="post-content">{{this.content}}</p>
       </div>
     {{/each}}

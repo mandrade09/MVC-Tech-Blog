@@ -22,7 +22,13 @@
   </header>
   <div class="container">
     <h2>My Posts</h2>
-    <a href="/posts/new"><button>Create New Post</button></a>
+    <form action="/api/posts" method="POST"> 
+      <h3>Create a New Post</h3>
+      <input type="text" name="title">
+      <textarea name="content"> </textarea>
+      <button type="submit">Submit</button>
+    </form>
+    {{!-- <a href="/posts/new"><button>Create New Post</button></a> --}}
     {{#each posts}}
       <div class="post">
         <h2 class="post-title">{{this.title}}</h2>

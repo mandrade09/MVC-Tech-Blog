@@ -10,7 +10,7 @@ router.post('/', withAuth, async (req, res) => {
             content: req.body.content,
             user_id: req.session.user_id
         });
-        res.json(newPost);
+        res.redirect("/dashboard");
     } catch (err) {
         res.status(500).json(err);
     }
